@@ -1,4 +1,3 @@
-# src/spark_utils.py
 import logging
 import os
 import configparser
