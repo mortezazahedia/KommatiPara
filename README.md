@@ -25,5 +25,9 @@ you can run it in command line with below command
 ```
 
 
+> for creating requirements.txt
+ ```
+ pip freeze requirements.txt
+ ```
 NOTE:
 I have doubt about PII and I implement remove_pii() but it depends on BA's order
