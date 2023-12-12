@@ -1,4 +1,3 @@
-#setup.py
 from setuptools import setup, find_packages
 
 setuptools.setup(
@@ -9,8 +8,7 @@ setuptools.setup(
     author='Morteza Zahedi Anaraki',
     author_email='morteza.zahedi.a@gmail.com',
     packages=setuptools.find_packages(exclude=['tests','src.main']),
-    install_requires=['pyspark>=3.0.0', 'pytest'
-    ],
+    install_requires=['pyspark>=3.0.0', 'pytest'],
     long_description='Create package for my assignment',
     long_description_content_type="text/markdown",
     classifiers=[
