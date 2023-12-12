@@ -3,36 +3,6 @@
 
 This project get to Dataframe and joined them wiyh eachother on id column then remove PII information and store the result in csv/parquet format
 
-my project structure is
-# Project Structure
-
-├── .github
-│   └── workflows
-│       └── main.yaml
-├── input_files
-│   ├── dataset_one.csv
-│   └── dataset_two.csv
-├── project_utils
-│   ├── logging_config.py
-│   ├── spark_utils.py
-│   └── __init__.py
-├── src
-│   └── main.py
-└── tests
-    ├── test_spark_utils.py
-    └── __init__.py
-├── .flake8
-├── .gitignore
-├── client_data_processing.log
-├── config.ini
-├── Makefile
-├── README.md
-├── requirements.txt
-└── setup.py
-
-
-
-
 ## for creating distribution package you can run  
 Runing below command
 ```commandline
