@@ -1,5 +1,6 @@
 # KommatiPara
 
+I used XML-style comments just for my package 
 
 ## for creating distribution package you have to run  
 Runing below command
@@ -22,3 +23,7 @@ you can run it in command line with below command
 ```commandline
 	pytest --cov-report html --cov=src Test
 ```
+
+
+NOTE:
+I have doubt about PII and I implement remove_pii() but it depends on BA's order
