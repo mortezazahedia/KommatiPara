@@ -3,14 +3,14 @@ import sys
 import logging
 import argparse
 from project_utils.logging_config import configure_logger
-from project_utils.spark_utils import create_spark_session, load_data, process_data, save_and_log_processed_data, validate_file_path\
-    , rename_columns
+from project_utils.spark_utils import create_spark_session, load_data, process_data, save_and_log_processed_data, \
+    validate_file_path, rename_columns
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 sys.path.append('.')
 
 
-def main(): # pragma: no cover
+def main():  # pragma: no cover
 
     if len(sys.argv) != 4:
         logging.error("Usage: main.py <clients_path> <financials_path> <countries>")
@@ -64,7 +64,7 @@ def main(): # pragma: no cover
         "cc_t": "credit_card_type",
     }
 
-    renamed_data = rename_columns(processed_data,column_mapping )
+    renamed_data = rename_columns(processed_data, column_mapping)
 
     # Save the processed data
     save_and_log_processed_data(renamed_data, output_format="csv")

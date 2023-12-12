@@ -2,7 +2,8 @@
 import logging
 from logging.handlers import RotatingFileHandler
 
-def configure_logger(): # pragma: no cover
+
+def configure_logger():  # pragma: no cover
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 

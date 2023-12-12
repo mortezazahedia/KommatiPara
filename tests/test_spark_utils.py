@@ -1,7 +1,7 @@
 import pytest
 from chispa.dataframe_comparer import assert_df_equality
 from pyspark.sql import SparkSession
-from project_utils.spark_utils import(
+from project_utils.spark_utils import (
     process_data,
     remove_pii,
     remove_credit_card,
@@ -9,9 +9,11 @@ from project_utils.spark_utils import(
     validate_email_format
 )
 
+
 @pytest.fixture(scope="session")
 def spark_session():
     return SparkSession.builder.appName("test_app").getOrCreate()
+
 
 def test_remove_pii(spark_session):
     data = [(1, "John", "Doe", "john.doe@example.com", "USA")]
@@ -66,11 +68,12 @@ def test_process_data(spark_session):
     }
 
     result_df = rename_columns(result_df, column_mapping)
-    result_df_count=result_df.count()
+    result_df_count = result_df.count()
 
     # Create Spark DataFrame from expected data
-    expected_df = spark_session.createDataFrame(expected_data, ["client_identifier", "first_name", "last_name", "email", "country", "bitcoin_address", "credit_card_type"])
-    expected_df_count=expected_df.count()
+    expected_df = spark_session.createDataFrame(expected_data, ["client_identifier", "first_name", "last_name", "email",
+                                                                "country", "bitcoin_address", "credit_card_type"])
+    expected_df_count = expected_df.count()
 
     assert result_df_count == expected_df_count
     assert_df_equality(result_df, expected_df)

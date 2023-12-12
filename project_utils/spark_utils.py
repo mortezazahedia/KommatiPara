@@ -3,7 +3,7 @@ import os
 import configparser
 import argparse
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, log
+from pyspark.sql.functions import col
 
 
 def create_spark_session(app_name="KommatiParaApp"):  # pragma: no cover
@@ -82,8 +82,7 @@ def validate_schema(df, expected_columns):  # pragma: no cover
         validate_email_format(df, email_column)
 
 
-# Helper function to load data from specified path
-def load_data(spark, clients_path, file_schema): # pragma: no cover
+def load_data(spark, clients_path, file_schema):  # pragma: no cover
     """
     Helper function to load dataframe with desired schema
     :param spark: Ppark session
@@ -96,8 +95,8 @@ def load_data(spark, clients_path, file_schema): # pragma: no cover
         df = spark.read.csv(clients_path, header=True, schema=file_schema)
 
         # Validate schemas
-        #validate_schema(clients_df, ["id", "first_name", "last_name", "email", "country"])
-        #validate_schema(financials_df, ["id", "btc_a", "cc_t", "cc_n"])
+        # validate_schema(clients_df, ["id", "first_name", "last_name", "email", "country"])
+        # validate_schema(financials_df, ["id", "btc_a", "cc_t", "cc_n"])
 
         # Handle Duplicate Data
         # Handle Null or Missing Data
@@ -135,10 +134,10 @@ def process_data(spark, clients_df, financials_df, countries):
         clients_filtered = filter_clients_by_country(clients_processed, countries)
 
         # Join datasets on the 'id' field
-        joined_data = join_datasets(clients_filtered, financials_processed,"id")
+        joined_data = join_datasets(clients_filtered, financials_processed, "id")
 
         return joined_data
-        logging.info(f"Joining two DataFrames")
+        logging.info("Joining two DataFrames")
     except Exception as e:
         logging.error("Error processing data: %s", str(e))
         raise
@@ -156,10 +155,10 @@ def save_and_log_processed_data(processed_data, output_format="parquet"):  # pra
 
         if output_format.lower() == "parquet":
             processed_data.write.mode("overwrite").parquet(output_path)
-            logging.info(f"Storing Result DataFrame in parquet file format ")
+            logging.info("Storing Result DataFrame in parquet file format ")
         elif output_format.lower() == "csv":
             processed_data.write.mode("overwrite").csv(output_path, header=True)
-            logging.info(f"Storing Result DataFrame in CSV file format ")
+            logging.info("Storing Result DataFrame in CSV file format ")
         else:
             raise ValueError(f"Unsupported output format: {output_format}")
 
@@ -191,14 +190,14 @@ def remove_pii(clients_df):  # pragma: no cover
     """
     try:
         # Assuming PII columns are 'name', 'address', etc. but I didn't remove anything, maybe lastname for this case!!!
-        logging.info(f"Start Removing PII Data")
+        logging.info("Start Removing PII Data")
         return clients_df.drop("name", "address", "phone")
     except Exception as e:
         logging.error("Error removing PII: %s", str(e))
         raise
 
 
-def remove_credit_card(financials_df): # pragma: no cover
+def remove_credit_card(financials_df):  # pragma: no cover
     """
     Helper function to remove credit_card info
     :param financials_df: Input DataFrame
@@ -206,14 +205,14 @@ def remove_credit_card(financials_df): # pragma: no cover
     """
     try:
         # Assuming credit card column is 'cc_number'
-        logging.info(f"Start Removing credit card Information")
+        logging.info("Start Removing credit card Information")
         return financials_df.drop("cc_n")
     except Exception as e:
         logging.error("Error removing credit card information: %s", str(e))
         raise
 
 
-def join_datasets(clients_df, financials_df, join_column:"id"):  # pragma: no cover
+def join_datasets(clients_df, financials_df, join_column: "id"):  # pragma: no cover
     """
     Helper function to join 2 DataFrame
     :param clients_df: First DataFrame
@@ -222,14 +221,14 @@ def join_datasets(clients_df, financials_df, join_column:"id"):  # pragma: no co
     :return: Joined DataFrame
     """
     try:
-        logging.info(f"Start Joining 2 DataFrame")
+        logging.info("Start Joining 2 DataFrame")
         return clients_df.join(financials_df, join_column, "inner")
     except Exception as e:
         logging.error("Error joining datasets: %s", str(e))
         raise
 
 
-def rename_columns(data_df, column_mapping): # pragma: no cover
+def rename_columns(data_df, column_mapping):  # pragma: no cover
     """
     Helper function to rename some columns in input DataFarme
     :param data_df: Input_DataFrame
@@ -243,11 +242,8 @@ def rename_columns(data_df, column_mapping): # pragma: no cover
         # Handle additional columns not in the mapping
         additional_columns = [col for col in data_df.columns if col not in column_mapping]
         column_mapping.update({col: col for col in additional_columns})
-        logging.info(f"Renaming DataFrame Columns")
+        logging.info("Renaming DataFrame Columns")
         return data_df.toDF(*[column_mapping.get(col, col) for col in data_df.columns])
     except Exception as e:
         logging.error("Error renaming columns: %s", str(e))
         raise
-
-
-
