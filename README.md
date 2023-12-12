@@ -1,3 +1,5 @@
+[![Build](https://github.com/mortezazahedia/KommatiPara/actions/workflows/main.yaml/badge.svg)](https://github.com/mortezazahedia/KommatiPara/actions/workflows/main.yaml)
+
 # KommatiPara
 
 I used XML-style comments just for my package 
