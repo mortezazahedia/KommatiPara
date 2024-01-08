@@ -21,7 +21,7 @@ python .\src\main.py .\input_files\dataset_one.csv .\input_files\dataset_two.csv
 ## for creating code coverage I createed Makefile
 you can run it in command line with below command
 ```commandline
-	pytest --cov-report html --cov=src Test
+	pytest --cov-report html --cov=tests
 ```
 
 ## for using flake8
