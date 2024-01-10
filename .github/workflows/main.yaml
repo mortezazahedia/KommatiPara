@@ -58,9 +58,6 @@ jobs:
         run: |
           pytest --doctest-modules --junitxml=junit/pytest-results-${{ matrix.python-version }}.xml --cov=$PROJECT_NAME --cov-report=xml tests/
 
-      - name: Run main.py
-        run: python src/main.py
-
       - name: Run linters
         run: |
           echo "Running linters"
