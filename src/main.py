@@ -9,8 +9,6 @@ from project_utils.spark_utils import create_spark_session, load_data, process_d
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 
-
-
 def main():  # pragma: no cover
 
     if len(sys.argv) != 4:
