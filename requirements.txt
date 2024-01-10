@@ -11,4 +11,5 @@ pycodestyle==2.11.1
 pyflakes==3.1.0
 pyspark
 pytest==7.4.3
+pytest-cov==3.0.0
 tomli==2.0.1
