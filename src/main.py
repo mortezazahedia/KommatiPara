@@ -2,12 +2,13 @@
 import sys
 import logging
 import argparse
+sys.path.append('.')
 from project_utils.logging_config import configure_logger
 from project_utils.spark_utils import create_spark_session, load_data, process_data, save_and_log_processed_data, \
     validate_file_path, rename_columns
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
-sys.path.append('.')
+
 
 
 def main():  # pragma: no cover
